@@ -1,0 +1,12 @@
+---
+title: "Chapter 1 - Intro to R"
+author: "Enes Kemal Ergin"
+date: "Wednesday, February 04, 2015"
+output: pdf_document
+---
+
+> Chapter Covers:
+  - Installing R
+  - Understanding the R Language
+  - Running Programs
+  
