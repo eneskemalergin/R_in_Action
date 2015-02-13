@@ -51,5 +51,5 @@ cor(age,weight)
 plot(age, weight) # It will make plot // Rplot_1
 q() # Quits the session.
 ```
-
+![alt text](https://github.com/eneskemalergin/R_in_Action/blob/master/Part%201%20-%20Getting%20Started/Rplot_1.png "Rplot_1")
 
