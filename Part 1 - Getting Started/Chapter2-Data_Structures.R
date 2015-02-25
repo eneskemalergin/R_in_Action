@@ -214,3 +214,62 @@ keepstats
 #  10.40   15.42   19.20   20.09   22.80   33.90 
 
 # Factors:
+'''
+Variables can be described as nominal, ordinal, or continuous. 
+Nominal variables are categorical, without an implied order. Diabetes(Type1, Type2)
+We coded them as it is. No order is implied.
+
+Ordinal variables imply order but not amount. Status(poor, improved, excellent) is
+a good example of an ordinal variable. 
+
+Continuous variables can yake on any value within some range, and both order 
+and amount are implied.
+
+Categorical(nominal) and ordered categorical variables in R are called factors. Factors are crucial in R
+because they determine how data will be analyzed and presented visually.
+
+The function factor() stores the categorical values as a vector of integers in the range[1,,,k]
+'''
+diabetes <- c("Type1", "Type2", "Type1", "Type1")
+diabetes <- factor(diabetes) # Stores as (1,2,1,1)
+diabetes
+
+# For Vectors representing ordinal variables, you add the parameter 
+# ordered = TRUE to factor() function.
+
+# Makes a character vector 
+status <- c("Poor", "Improved", "Excellent", "Poor")
+# Converts character vector to ordered factor and overwrite it.
+status <- factor(status, ordered = TRUE)
+status
+
+# We can also override the default by specifying a levels option.
+status <-factor(status, order = TRUE, 
+                levels = c("Poor", "Improved", "Excellent"))
+
+# Entering data as vectors
+patientID <- c(1,2,3,4)
+age <- c(25,34,28,52)
+diabetes <- c("Type1", "Type2", "Type1", "Type1")
+status <- c("Poor", "Improved", "Excellent", "Poor")
+# Make diabetes factor
+diabetes <- factor(diabetes)
+# Make status ordered factor
+status <- factor(status, order=TRUE)
+# Make a dataframe
+patientdata <- data.frame(patientID, age, diabetes, status)
+str(patientdata) # Displays the object structure.
+# 'data.frame':  4 obs. of  4 variables:
+# $ patientID: num  1 2 3 4
+# $ age      : num  25 34 28 52
+# $ diabetes : Factor w/ 2 levels "Type1","Type2": 1 2 1 1
+# $ status   : Ord.factor w/ 3 levels "Poor"<"Improved"<..: 1 2 3 1
+
+summary(patientdata) # Displays object summary
+#    patientID         age         diabetes       status 
+# Min.   :1.00   Min.   :25.00   Type1:3   Poor     :2  
+# 1st Qu.:1.75   1st Qu.:27.25   Type2:1   Improved :1  
+# Median :2.50   Median :31.00             Excellent:1  
+# Mean   :2.50   Mean   :34.75                          
+# 3rd Qu.:3.25   3rd Qu.:38.50                          
+# Max.   :4.00   Max.   :52.00 
