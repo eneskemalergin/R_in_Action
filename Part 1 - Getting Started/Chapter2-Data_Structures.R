@@ -273,3 +273,128 @@ summary(patientdata) # Displays object summary
 # Mean   :2.50   Mean   :34.75                          
 # 3rd Qu.:3.25   3rd Qu.:38.50                          
 # Max.   :4.00   Max.   :52.00 
+
+# Lists:
+'''
+Lists are the most complex of the R data types. List is an ordered 
+collection of objects. It allows you to gather a variety of objects
+under one name. list() function is using.
+
+mylist <- list(object1, object2, ....)
+
+You can name the objects in a list
+
+mylist <- list(name1 = object1, name2 = object2, ...)
+
+'''
+g <- "My First List"
+h <- c(25,26,18,39)
+j <- matrix(1:10, nrow = 5)
+k <- c("one", "two", "three")
+mylist <- list(title = g, ages=h, j , k)
+mylist
+# $title
+# [1] "My First List"
+#
+# $ages
+# [1] 25 26 18 39
+# 
+# [[3]]
+# [,1] [,2]
+# [1,]    1    6
+# [2,]    2    7
+# [3,]    3    8
+# [4,]    4    9
+# [5,]    5   10
+#
+# [[4]]
+# [1] "one"   "two"   "three"
+
+mylist[[2]] # prints the second component
+# [1] 25 26 18 39
+
+mylist[["ages"]] # prints ages part.
+# [1] 25 26 18 39
+
+
+## Data Input
+#################
+''' Variety of different data could be imported to R.'''
+
+''' 
+The simplest method of data entry is from the keyboard. The edit() 
+function in R will invoke a text editor that will allow you to enter
+your data manually.
+1. Create an empty data frame (or matrix) with the variable names and 
+modes you want to have in the final dataset.
+2. Invoke the text editor on this data object, enter your data, and save
+the results back to the data object.
+'''
+
+# Creates an empty data.frame with default values of speciied variables.
+mydata <- data.frame(age = numeric(0),
+                     gender = character(0), weight = numeric(0))
+# When you run the last function it says 0 observations and 3 variables
+
+# Now we will write them manually.
+mydata <- edit(mydata)
+
+# shortcut of the last function of R  is 
+fix(mydata) 
+
+# Works well for small datasets.
+
+# Importing data from a delimited text file.
+'''
+mydataframe <- read.table(file, header = logical_value, sep = "delimeter", 
+                          row.names = "name")
+# where file is a delimited ASCII file.
+'''
+grades <- read.table("studentsgrades.csv", header = TRUE, sep = ",", 
+                     row.names = "STUDENTID")
+# To work with it you should have studentsgrades.csv file/
+
+# On windows RODBC package to access EXcel files.
+install.packages("RODBC")
+library(RODBC)
+# We can import data from excel using following procedure.
+channel <- odbcConnectExcel("path to file") #It works for 32-bit windows.
+mydataframe <- sqlFetch(channel, "mysheet")
+odbcClose(channel)
+help(RODBC)
+
+# for XLSX format which excel 2007 and later versions use.
+install.packages("xlsx")
+library(xlsx)
+workbook <- "C:/Users/Pc-41/Desktop/Academic Career/Scientific Dictionary.xlsx"
+mydataframe <- read.xlsx(workbook, 1)
+# This is very useful when we are dealing with a lot of excel files.
+
+
+""" 
+In Webscraping the user extracts information embedded in a web page
+available over the internet and saves it into R structures for further 
+analysis.
+
+One way to accomplish this is to download the web page using the readLines()
+function and manipulate it with functions such as grep() and gsub().
+"""
+
+# Importing data from SPSS
+  # they can be important into R via the read.spss() function in the foreign package
+
+install.packages("Hmisc")
+library(Hmisc)
+# This imports the data
+mydataframe <- spss.get("mydata.sav", use.value.labels = TRUE)
+
+# Annotating Datasets
+"""
+Data analysts typically annotate datasets to make the results easier to interpret.
+Typically
+annotation includes adding descriptive labels to variable names and value labels
+to the codes used for categorical variables. For example, for the variable age, you
+might want to attach the more descriptive label "Age at hospitalization (in years)." For
+the variable gender coded 1 or 2, you might want to associate the labels "male" and
+"female."
+"""
