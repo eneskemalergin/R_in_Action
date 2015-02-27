@@ -398,3 +398,43 @@ might want to attach the more descriptive label "Age at hospitalization (in year
 the variable gender coded 1 or 2, you might want to associate the labels "male" and
 "female."
 """
+
+# R's ability to handle variable labels is limited.
+
+# One approach is to use variable label as the variable's name and then 
+#   refer to the variable by its position.
+
+# Renames age to "Age at hospitalization (in years)"
+names(patients)[2] <- "Age at hospitalization (in years)"
+
+# factor() function can be used to create value labes for categorical varibles.
+
+# creates value labels with the code.
+patientdata$gender <- factor(patientdata$gender,
+                             levels = c(1,2),
+                             labels = c("male", "female"))
+
+"""
+- length(object)             Number of elements/components.
+- dim(object)                Dimensions of an object.
+- str(object)                Structure of an object.
+- class(object)              Class or type of an object.
+- mode(object)               How an object is stored.
+- names(object)              Names of components in an object.
+- c(object, object,...)      Combines objects into a vector.
+- cbind(object, object, ...) Combines objects as columns.
+- rbind(object, object, ...) Combines objects as rows.
+- object                     Prints the object.
+- head(object)               Lists the first part of the object.
+- tail(object)               Lists the last part of the object.
+- ls()                       Lists current objects.
+- rm(object, object, ...)    Deletes one or more objects. The statement rm(list = ls()) will remove most objects
+from the working environment.
+- newobject <- edit(object)  Edits object and saves as newobject.
+- fix(object)                Edits in place.
+"""
+
+# One of the  most challenging tasks in data analysis is data preparation.
+# In this chapter you have seen haw you can prepare your data.
+
+############################### END OF CHAPTER ##############################
