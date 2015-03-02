@@ -1,4 +1,5 @@
 # Author: Enes Kemal Ergin
+# Chapter 2 : Data structures (Last Update: 03/01/15)
 
 # vectors:
 a <- c(1,2,3,4,5,6,7) # Numerical Vector
