@@ -248,3 +248,61 @@ text(wt, mpg,
 detach(mtcars)
 
 ## Combining Graphs
+
+# R makes it easy to combine several graphs into one overall graph
+# par() or layout() function does the job for you...
+
+# Creates four plots and arranges them into two rows and two columns
+attach(mtcars)
+opar <- par(no.readonly = TRUE)
+par(mfrow = c(2,2))
+plot(wt, mpg, main = "Scatterplot of wt vs. mpg")
+plot(wt, disp, main = "Scatterplot og wt vs. disp")
+hist(wt, main = "Histogram of wt")
+boxplot(wt, main = "Boxplot of wt")
+par(opar)
+detach(mtcars)
+
+
+# Arranges 3 plots in 3 rows and 1 column
+attach(mtcars)
+opar <- par(no.readonly = TRUE)
+par(mfrow = c(3,1))
+hist(wt)
+hist(mpg)
+hist(disp)
+par(opar)
+detach(mtcars)
+
+# layout() function has the form layout(mat) where mat is a matrix object
+# specifiying the locations of the multiple plots to combine.
+
+attach(mtcars)
+layout(matrix(c(1,1,2,3), byrow = TRUE))
+hist(wt)
+hist(mpg)
+hist(disp)
+detach(mtcars)
+# optionally we can include widths and heights parameters.
+
+## Creating a figure arrangement with fine control
+
+opar <- par(no.readonly = TRUE)
+# Sets up scatter plot
+par(fig = c(0,0.8,0,0.8))
+plot(mtcars$wt, mtcars$mpg,
+     xlab = "Miles Per Gallon", 
+     ylab = "Car Weight")
+par(fig = c(0,0.8,0.55,1), new = TRUE)
+# Adds box plot above
+boxplot(mtcars$wt, horizontal = TRUE, axes = FALSE)
+
+# Adds box plot to right
+par(fig = c(0.65, 1, 0, 0.8), new = TRUE)
+boxplot(mtcars$mpg, axes = FALSE)
+
+mtext("Enhanced Scatterplot", side = 3, outer = TRUE, line = -3)
+par(opar)
+
+
+## End of the Section
