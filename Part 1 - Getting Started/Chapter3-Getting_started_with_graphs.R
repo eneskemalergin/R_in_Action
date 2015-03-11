@@ -1,5 +1,5 @@
 # Author: Enes Kemal Ergin
-# Chapter 3 : Getting Started with graphs (Last Update: 03/01/15)
+# Chapter 3 : Getting Started with graphs (Last Update: 03/10/15)
 
 ## Working with Graphs
 # In a typical interactive sesion, you build a graph one statement at a time.
